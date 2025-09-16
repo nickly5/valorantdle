@@ -1,6 +1,6 @@
 // Wordle game logic
 
-const WORD_BANK = ["phoenix", "jett", "astra", "waylay"];
+const WORD_BANK = ["phoenix", "jett", "astra", "waylay", "brimstone", "sage", "sova", "viper", "cypher", "reyna", "killjoy", "breach", "omen", "raze", "skye", "yoru", "kayo", "chamber", "neon", "fade", "harbor", "gekko", "deadlock", "iso", "clove", "vyse", "tejo"];
 let answer = WORD_BANK[Math.floor(Math.random() * WORD_BANK.length)];
 let wordLength = answer.length;
 let maxRows = 6;
@@ -125,3 +125,4 @@ updateGrid();
 
 document.addEventListener("keydown", handleKey);
 updateGrid();
+
