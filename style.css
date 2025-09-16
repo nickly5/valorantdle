@@ -1,0 +1,84 @@
+
+.grid {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	margin: 40px auto;
+	width: max-content;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.cell {
+	width: 40px;
+	height: 40px;
+	border: 2px solid #888;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	font-family: sans-serif;
+	box-sizing: border-box;
+	transition: background 0.2s, color 0.2s;
+}
+
+.cell.correct {
+	background: #6aaa64;
+	color: #fff;
+	border-color: #6aaa64;
+}
+.cell.present {
+	background: #c9b458;
+	color: #fff;
+	border-color: #c9b458;
+}
+.cell.absent {
+	background: #787c7e;
+	color: #fff;
+	border-color: #787c7e;
+}
+
+.keyboard {
+	margin: 32px auto 0 auto;
+	width: max-content;
+	user-select: none;
+}
+.kb-row {
+	display: flex;
+	justify-content: center;
+	gap: 6px;
+	margin-bottom: 6px;
+}
+.key {
+	min-width: 36px;
+	height: 48px;
+	background: #eee;
+	border: none;
+	border-radius: 6px;
+	font-size: 1.1rem;
+	font-family: inherit;
+	color: #222;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+.key.correct {
+	background: #6aaa64;
+	color: #fff;
+}
+.key.present {
+	background: #c9b458;
+	color: #fff;
+}
+.key.absent {
+	background: #787c7e;
+	color: #fff;
+}
+.key.special {
+	min-width: 60px;
+	font-weight: bold;
+}
