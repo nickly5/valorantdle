@@ -61,7 +61,7 @@ function colorRow(rowIdx) {
     for (let j = 0; j < wordLength; j++) {
       if (!answerUsed[j] && guessArr[i] === answerArr[j]) {
         guessResult[i] = "present";
-        answerused[j] = true;
+        answerUsed[j] = true;
         break;
       }
     }
@@ -150,5 +150,6 @@ updateGrid();
 
 document.addEventListener("keydown", handleKey);
 updateGrid();
+
 
 
