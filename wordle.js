@@ -32,7 +32,9 @@ function updateGrid() {
     const cells = rows[r].querySelectorAll(".cell");
     for (let c = 0; c < wordLength; c++) {
       cells[c].textContent = guesses[r][c] || "";
-      cells[c].className = "cell";
+      if (r === currentRow) {
+        cells[c].className = "cell";
+      }
     }
   }
 }
@@ -40,19 +42,42 @@ function updateGrid() {
 function colorRow(rowIdx) {
   const row = document.querySelectorAll(".row")[rowIdx];
   const cells = row.querySelectorAll(".cell");
-  for (let c = 0; c < wordLength; c++) {
-    const letter = guesses[rowIdx][c];
-    if (letter === answer[c]) {
-      cells[c].classList.add("correct");
+  const guess = guesses[rowIdx];
+  const answerArr = answer.split("");
+  const guessArr = guess.split("");
+  let answerUsed = Array(wordLength).fill(false);
+  let guessResult = Array(wordLength).fill("absent");
+
+  // First pass: mark correct
+  for (let i = 0; i < wordLength; i++) {
+    if (guessArr[i] === answerArr[i]) {
+      guessResult[i] = "correct";
+      answerUsed[i] = true;
+    }
+  }
+  // Second pass: mark present
+  for (let i = 0; i < wordLength; i++) {
+    if (guessResult[i] === "correct") continue;
+    for (let j = 0; j < wordLength; j++) {
+      if (!answerUsed[j] && guessArr[i] === answerArr[j]) {
+        guessResult[i] = "present";
+        answerused[j] = true;
+        break;
+      }
+    }
+  }
+  // Apply colors & update keyboard
+  for (let i = 0; i < wordLength; i++) {
+    cells[i].classList.add(guessResult[i]);
+    const letter = guessArr[i];
+    if (guessResult[i] === "correct") {
       letterStates[letter] = "correct";
-    } else if (answer.includes(letter)) {
+    } else if (guessResult[i] === "present") {
       if (letterStates[letter] !== "correct") {
-        cells[c].classList.add("present");
         letterStates[letter] = "present";
       }
     } else {
       if (!letterStates[letter]) {
-        cells[c].classList.add("absent");
         letterStates[letter] = "absent";
       }
     }
@@ -125,4 +150,5 @@ updateGrid();
 
 document.addEventListener("keydown", handleKey);
 updateGrid();
+
 
